@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import pabd.learnmigratedb.exceptions.IllegalOrphanException;
 import pabd.learnmigratedb.exceptions.NonexistentEntityException;
 import pabd.learnmigratedb.exceptions.PreexistingEntityException;
@@ -27,11 +28,16 @@ public class ApotekerJpaController implements Serializable {
     public ApotekerJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
-    private EntityManagerFactory emf = null;
+    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("pabd_learnmigratedb_jar_0.0.1-SNAPSHOTPU");
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
+
+    public ApotekerJpaController() {
+    }
+    
+    
 
     public void create(Apoteker apoteker) throws PreexistingEntityException, Exception {
         EntityManager em = null;
